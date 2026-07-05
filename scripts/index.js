@@ -140,6 +140,6 @@ closeAddCardButton.addEventListener("click", () => closeModal(addCardPopup));
 cardForm.addEventListener("submit", handleCardFormSubmit);
 closeImagePopupCtx.addEventListener("click", () => closeModal(imagePopup));
 
-initialCards.forEach(function (card) {
+initialCards.reverse().forEach(function (card) {
   renderCard(card.name, card.link, cardsList);
 });

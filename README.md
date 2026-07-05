@@ -1,5 +1,10 @@
 # Tripleten web_project_around_es
 
+## Enlace del Proyecto
+
+Puedes ver el proyecto desplegado en vivo aquí:
+https://avilasanti.github.io/web_project_around_es/
+
 ## Descripción
 
 El proyecto define una estructura de datos estática (`initialCards`) que contiene información sobre diferentes destinos naturales (nombre y enlace de imagen) e implementa de forma robusta la lógica interactiva para la manipulación del Document Object Model (DOM). Permite editar el perfil del usuario, renderizar tarjetas dinámicamente, añadir nuevos destinos mediante un formulario, dar "Me gusta" a las fotos, eliminarlas y abrirlas en un visor a pantalla completa.
@@ -18,3 +23,9 @@ El script principal consta de partes clave:
    - `renderCard()` y `handleCardFormSubmit()` para crear e insertar nuevas tarjetas al principio de la lista.
    - `handleLikeIcon()`, `handleDeleteCard()` y `handleCardImageClick()` para manejar las interacciones de cada tarjeta.
 4. **Escuchadores de Eventos**: Vinculación de los eventos `click` y `submit` a sus respectivos botones, imágenes y formularios al final del script.
+
+## Tecnologías Utilizadas
+
+- **HTML5:**
+- **CSS3:**
+- **JavaScript (ES6):**
