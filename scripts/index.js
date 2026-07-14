@@ -1,3 +1,14 @@
+import { enableValidation } from "./validate.js";
+
+const config = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_active",
+};
+
 // DATOS INICIALES
 
 const initialCards = [
@@ -143,3 +154,5 @@ closeImagePopupCtx.addEventListener("click", () => closeModal(imagePopup));
 initialCards.reverse().forEach(function (card) {
   renderCard(card.name, card.link, cardsList);
 });
+
+enableValidation(config);
