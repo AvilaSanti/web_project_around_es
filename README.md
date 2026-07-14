@@ -15,9 +15,9 @@ Su arquitectura sigue principios de **diseño modular y código limpio**, separa
 
 ## Tecnologías Utilizadas
 
-- **HTML5:**
-- **CSS3:**
-- **JavaScript (ES6):**
+- **HTML5**
+- **CSS3**
+- **JavaScript (ES6)**
 
 ## Estructura del Código
 
