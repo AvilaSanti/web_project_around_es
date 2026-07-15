@@ -46,3 +46,9 @@ Gracias a este enfoque modular, el archivo principal solo necesita importar y ac
 ```javascript
 enableValidation(config);
 ```
+
+#### 3. Experiencia de Usuario y Cierre de Ventanas Modales
+
+- **Cierre por Superposición (Overlay):** Los popups pueden cerrarse haciendo clic en cualquier área del fondo fuera del formulario
+- **Cierre por Teclado (Tecla Escape):**
+  - Se implementó un detector global que cierra la ventana emergente activa al presionar la tecla `Esc`.
