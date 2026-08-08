@@ -131,7 +131,7 @@
   display: block;
 }
 
-.popup__button:disabled {
+.popup__button_disabled {
   background-color: white;
   cursor: not-allowed;
   opacity: 0.3;
