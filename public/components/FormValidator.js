@@ -1,5 +1,5 @@
 import { defaultFormConfig } from "../utils/constants.js";
-class FormValidator {
+export class FormValidator {
     formInfo;
     formElement;
     constructor(formInfo, formElement) {
