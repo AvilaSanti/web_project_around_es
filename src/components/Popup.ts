@@ -8,17 +8,17 @@ export class Popup {
     public open(): void {
         if (!this.popupElement) {
             return;
-        };
+        }
         
-        this.popupElement.classList.add('popup_opened'); 
+        this.popupElement.classList.add('popup_is-opened'); 
         document.addEventListener('keydown', this.handleEscClose);
     }
 
     public close(): void {
         if (!this.popupElement) {
             return;
-        };
-        this.popupElement.classList.remove('popup_opened'); 
+        }
+        this.popupElement.classList.remove('popup_is-opened'); 
         document.removeEventListener('keydown', this.handleEscClose);
     }
 
@@ -27,6 +27,7 @@ export class Popup {
             this.close();
         }
     }
+
     public setEventListeners(): void {
         if (!this.popupElement) return;
 

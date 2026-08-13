@@ -7,16 +7,14 @@ export class Popup {
         if (!this.popupElement) {
             return;
         }
-        ;
-        this.popupElement.classList.add('popup_opened');
+        this.popupElement.classList.add('popup_is-opened');
         document.addEventListener('keydown', this.handleEscClose);
     }
     close() {
         if (!this.popupElement) {
             return;
         }
-        ;
-        this.popupElement.classList.remove('popup_opened');
+        this.popupElement.classList.remove('popup_is-opened');
         document.removeEventListener('keydown', this.handleEscClose);
     }
     handleEscClose = (evt) => {

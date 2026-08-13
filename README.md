@@ -8,47 +8,25 @@ Puedes ver y probar el portafolio en funcionamiento entrando al siguiente enlace
 
 Este proyecto es una galería interactiva de destinos naturales que manipula el DOM de forma dinámica. Permite editar el perfil de usuario, añadir y eliminar tarjetas, dar "Me gusta" a las fotos y abrirlas en un visor a pantalla completa.
 
-Su arquitectura sigue principios de **diseño modular y código limpio**, separando las responsabilidades en dos archivos independientes:
-
-- **`index.js`**: Controla la interfaz de usuario, eventos y el flujo de las tarjetas.
-- **`validate.js`**: Un motor de validación de formularios 100% reutilizable y dinámico (basado en un objeto `config`).
+La arquitectura del proyecto ha sido completamente refactorizada bajo los principios de la **Programación Orientada a Objetos (POO)** y **TypeScript**, garantizando un código limpio, modular, escalable y con un tipado estricto.
 
 ## Tecnologías Utilizadas
 
 - **HTML5**
 - **CSS3**
-- **JavaScript (ES6)**
+- **TypeScript**
 
-## Estructura del Código
+## Estructura del Código y Componentes
 
-### 1. Script Principal (`index.js`)
+El proyecto separa de forma estricta sus responsabilidades en clases independientes dentro del directorio `src/components/`:
 
-- **Arreglo de Datos**: Un array de objetos (`const initialCards`) con propiedades `name` y `link` para renderizar las tarjetas iniciales.
-- **Método de Recorrido**: El uso de `.forEach()` para iterar e insertar cada tarjeta en el contenedor al cargar la página.
-- **Funciones de Responsabilidad Única**:
-  - `openModal()` y `closeModal()` para el control genérico de ventanas emergentes.
-  - `fillProfileForm()` y `handleOpenEditModal()` para la gestión del perfil.
-  - `handleProfileFormSubmit()` para actualizar los datos del usuario.
-  - `getCardElement()` para clonar el `<template>` y armar cada tarjeta de forma independiente.
-  - `renderCard()` y `handleCardFormSubmit()` para crear e insertar nuevas tarjetas al principio de la lista.
-  - `handleLikeIcon()`, `handleDeleteCard()` y `handleCardImageClick()` para manejar las interacciones de cada tarjeta.
-- **Escuchadores de Eventos**: Vinculación de los eventos `click` y `submit` a sus respectivos botones, imágenes y formularios al final del script.
+- **`Card`**: Genera la estructura y el marcado de las tarjetas, administrando de forma interna los escuchadores de eventos para los Likes, la eliminación y el clic en la imagen (acoplamiento débil).
+- **`FormValidator`**: Motor encargado de validar campos en tiempo real de manera aislada y gestionar de forma dinámica el estado de los botones de envío.
+- **`Section`**: Clase genérica encargada únicamente de iterar y renderizar elementos en el DOM mediante funciones callback.
+- **`Popup`**: Clase base que controla la lógica global de apertura, cierre y listeners de las ventanas emergentes (incluyendo el cierre por tecla `Escape` y por clic en el fondo oscuro).
+- **`PopupWithImage`** y **`PopupWithForm`**: Subclases especializadas que heredan de `Popup` para inyectar datos de imágenes a pantalla completa o extraer y procesar la información de los formularios.
+- **`UserInfo`**: Encapsula y gestiona la lectura y escritura de la información del perfil del usuario directamente en la interfaz.
 
-### 2. Motor de Validación Reutilizable (`validate.js`)
+### Orquestador (`index.ts`)
 
-Para evitar duplicar código y mantener el proyecto altamente mantenible, se desarrolló un módulo de validación independiente y **100% reutilizable**. Para no depender de variables globales o escribir clases CSS fijas (`"popup__input_type_error"`), las funciones clave (`showInputError`, `hideInputError`, `checkInputValidity`, `setEventListeners` y `toggleButtonState`) se diseñaron para recibir parámetros dinámicos:
-
-- **`formElement`**: Permite que las funciones operen sobre cualquier formulario de la página de forma aislada (tanto el de "Editar Perfil" como el de "Nuevo Lugar").
-- **Objeto `config`**: Un objeto de configuración que centraliza todos los selectores y clases CSS de error del proyecto en un solo lugar.
-
-Gracias a este enfoque modular, el archivo principal solo necesita importar y activar la validación mediante una única llave de encendido:
-
-```javascript
-enableValidation(config);
-```
-
-#### 3. Experiencia de Usuario y Cierre de Ventanas Modales
-
-- **Cierre por Superposición (Overlay):** Los popups pueden cerrarse haciendo clic en cualquier área del fondo fuera del formulario
-- **Cierre por Teclado (Tecla Escape):**
-  - Se implementó un detector global que cierra la ventana emergente activa al presionar la tecla `Esc`.
+Fiel al diseño modular, el archivo principal del proyecto contiene única y exclusivamente la inicialización y creación de las instancias de estas clases, además de configurar los detectores de eventos específicos de la página.

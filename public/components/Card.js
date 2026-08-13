@@ -1,4 +1,4 @@
-class Card {
+export class Card {
     name;
     link;
     selector;
@@ -14,9 +14,7 @@ class Card {
     }
     getTemplate() {
         const cardTemplate = document.querySelector(this.selector);
-        const cardElement = cardTemplate.content
-            .querySelector(".card")
-            .cloneNode(true);
+        const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
         const imageElement = cardElement.querySelector(".card__image");
         const titleElement = cardElement.querySelector(".card__title");
         imageElement.src = this.link;
@@ -24,12 +22,23 @@ class Card {
         titleElement.textContent = this.name;
         return cardElement;
     }
+    handleLikeIcon(evt) {
+        const target = evt.target;
+        target.classList.toggle("card__like-button_is-active");
+    }
+    handleDeleteCard() {
+        this.cardElement.remove();
+    }
     setEventListeners() {
-        this.cardElement.addEventListener("click", this.handleCardClick);
+        const cardImage = this.cardElement.querySelector(".card__image");
+        cardImage?.addEventListener("click", () => this.handleCardClick());
+        const likeButton = this.cardElement.querySelector(".card__like-button");
+        likeButton?.addEventListener("click", (evt) => this.handleLikeIcon(evt));
+        const deleteButton = this.cardElement.querySelector(".card__delete-button");
+        deleteButton?.addEventListener("click", () => this.handleDeleteCard());
     }
     generateCard() {
         return this.cardElement;
     }
 }
-export {};
 //# sourceMappingURL=Card.js.map
