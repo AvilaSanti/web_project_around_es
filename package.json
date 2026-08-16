@@ -1,0 +1,14 @@
+{
+  "name": "web_project_around_es",
+  "version": "1.0.0",
+  "description": "Around the U.S. refactored to TypeScript and OOP",
+  "main": "public/index.js",
+  "scripts": {
+    "build": "tsc",
+    "deploy": "gh-pages -d public"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "typescript": "^5.0.0"
+  }
+}

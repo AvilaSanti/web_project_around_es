@@ -66,7 +66,7 @@ private setEventListeners(formElement: HTMLFormElement , formInfo: FormConfig): 
     const buttonElement = formElement.querySelector<HTMLButtonElement>(formInfo.buttonSelector);
     this.toggleButtonState(inputList, buttonElement, formInfo);
     inputList.forEach((inputElement) => {
-        inputElement.addEventListener("input", (evt: InputEvent) => {
+        inputElement.addEventListener("input", (evt: Event) => {
             this.checkInputValidity( inputElement );
             this.toggleButtonState(inputList, buttonElement, formInfo);
         });
