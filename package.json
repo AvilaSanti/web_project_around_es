@@ -4,11 +4,9 @@
   "description": "Around the U.S. refactored to TypeScript and OOP",
   "main": "public/index.js",
   "scripts": {
-    "build": "tsc",
-    "deploy": "gh-pages -d public"
+    "build": "tsc"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0",
     "typescript": "^5.0.0"
   }
 }

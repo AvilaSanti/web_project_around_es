@@ -19,6 +19,16 @@ export class PopupWithForm extends Popup {
         }
         return formValues;
     }
+    setInputValues(data) {
+        if (!this._formElement)
+            return;
+        Object.keys(data).forEach((key) => {
+            const input = this._formElement.querySelector(`[name="${key}"]`);
+            if (input) {
+                input.value = data[key];
+            }
+        });
+    }
     setEventListeners() {
         super.setEventListeners();
         if (this._formElement) {

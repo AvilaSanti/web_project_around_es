@@ -1,4 +1,3 @@
-import { defaultFormConfig } from "../utils/constants.js";
 export class FormValidator {
     formInfo;
     formElement;
@@ -15,7 +14,7 @@ export class FormValidator {
     hideInputError(element) {
         const errorElement = this.formElement.querySelector(`.${element.id}-input-error`);
         element.classList.remove(this.formInfo.inputErrorClass);
-        errorElement.classList.remove(this.formInfo.errorActiveClass);
+        element.classList.remove(this.formInfo.errorActiveClass);
         errorElement.textContent = "";
     }
     checkInputValidity(element) {

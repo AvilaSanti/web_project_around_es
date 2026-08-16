@@ -9,27 +9,27 @@ import { defaultFormConfig } from "./utils/constants.js";
 const initialCards = [
   {
     name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
+    link: "https://amazonaws.com",
   },
   {
     name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
+    link: "https://amazonaws.com",
   },
   {
     name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
+    link: "https://amazonaws.com",
   },
   {
     name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
+    link: "https://amazonaws.com",
   },
   {
     name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
+    link: "https://amazonaws.com",
   },
   {
     name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
+    link: "https://amazonaws.com",
   },
 ];
 
@@ -72,19 +72,11 @@ const popupAddCard = new PopupWithForm("#new-card-popup", (formValues) => {
   popupAddCard.close();
 });
 
-const formValidators: Record<string, FormValidator> = {};
+const editProfileForm = document.querySelector("#edit-profile-form") as HTMLFormElement;
+const newCardForm = document.querySelector("#new-card-form") as HTMLFormElement;
 
-const enableValidation = (config: typeof defaultFormConfig) => {
-  const formList = Array.from(document.querySelectorAll<HTMLFormElement>(".popup__form"));
-  formList.forEach((formElement) => {
-    const validator = new FormValidator(config, formElement);
-    const formId = formElement.getAttribute("id");
-    if (formId) {
-      formValidators[formId] = validator;
-    }
-    validator.enableValidation();
-  });
-};
+const editProfileValidator = new FormValidator(defaultFormConfig, editProfileForm);
+const newCardValidator = new FormValidator(defaultFormConfig, newCardForm);
 
 popupImage.setEventListeners();
 popupEditProfile.setEventListeners();
@@ -94,23 +86,21 @@ const buttonEditProfile = document.querySelector(".profile__edit-button");
 buttonEditProfile?.addEventListener("click", () => {
   const currentUserData = userInfo.getUserInfo();
   
-  const inputName = document.querySelector(".popup__input_type_name") as HTMLInputElement;
-  const inputDescription = document.querySelector(".popup__input_type_description") as HTMLInputElement;
-  
-  if (inputName && inputDescription) {
-    inputName.value = currentUserData.name;
-    inputDescription.value = currentUserData.about;
-  }
+  popupEditProfile.setInputValues({
+    name: currentUserData.name,
+    description: currentUserData.about
+  });
 
-  formValidators["edit-profile-form"]?.resetValidation();
+  editProfileValidator.resetValidation();
   popupEditProfile.open();
 });
 
 const buttonAddCard = document.querySelector(".profile__add-button");
 buttonAddCard?.addEventListener("click", () => {
-  formValidators["new-card-form"]?.resetValidation();
+  newCardValidator.resetValidation();
   popupAddCard.open();
 });
 
 cardListSection.renderer();
-enableValidation(defaultFormConfig);
+editProfileValidator.enableValidation();
+newCardValidator.enableValidation();

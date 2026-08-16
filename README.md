@@ -2,7 +2,7 @@
 
 ## 🌐 Demo en Vivo
 
-Puedes ver y probar el portafolio en funcionamiento entrando al siguiente enlace: 👉 [Ver Portafolio en Vivo](https://avilasanti.github.io/web_project_around_es/)
+Puedes ver y probar la galería en funcionamiento entrando al siguiente enlace: 👉 [Ver Portafolio en Vivo](https://avilasanti.github.io/web_project_around_es/)
 
 ## Descripción
 
@@ -15,6 +15,7 @@ La arquitectura del proyecto ha sido completamente refactorizada bajo los princi
 - **HTML5**
 - **CSS3**
 - **TypeScript**
+- **Programación Orientada a Objetos (POO)**
 
 ## Estructura del Código y Componentes
 
@@ -30,3 +31,25 @@ El proyecto separa de forma estricta sus responsabilidades en clases independien
 ### Orquestador (`index.ts`)
 
 Fiel al diseño modular, el archivo principal del proyecto contiene única y exclusivamente la inicialización y creación de las instancias de estas clases, además de configurar los detectores de eventos específicos de la página.
+
+## Cómo Compilar y Servir el Proyecto
+
+Este proyecto requiere compilar los archivos de origen TypeScript localizados en `src/` hacia la carpeta de distribución pública `public/`.
+
+### 1. Instalar dependencias
+
+Instala TypeScript ejecutando en la raíz del proyecto:
+
+```bash
+npm install
+```
+
+### 2. Compilar el código
+
+Para compilar los archivos `.ts` a JavaScript ejecutable nativo, ejecuta:
+
+```bash
+npm run build
+```
+
+El comando `tsc` leerá la configuración del archivo `tsconfig.json` y generará la salida directamente dentro de la carpeta `public/`. Puedes abrir el archivo `public/index.html` en tu navegador o mediante un servidor local para probar la galería de forma interactiva.
