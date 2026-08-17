@@ -13,3 +13,30 @@ export const defaultFormConfig: FormConfig = {
   inputErrorClass: "popup__input_type_error",
   errorActiveClass: "popup__input-error_active"
 };
+
+export const initialCards = [
+  {
+    name: "Valle de Yosemite",
+    link: "https://amazonaws.com",
+  },
+  {
+    name: "Lago Louise",
+    link: "https://amazonaws.com",
+  },
+  {
+    name: "Montañas Calvas",
+    link: "https://amazonaws.com",
+  },
+  {
+    name: "Latemar",
+    link: "https://amazonaws.com",
+  },
+  {
+    name: "Parque Nacional de la Vanoise",
+    link: "https://amazonaws.com",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://amazonaws.com",
+  },
+];
