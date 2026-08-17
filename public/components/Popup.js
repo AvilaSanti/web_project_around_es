@@ -3,33 +3,34 @@ export class Popup {
     constructor(popupSelector) {
         this.popupElement = document.querySelector(popupSelector);
     }
-    open() {
+    // 💡 Agregamos los parámetros opcionales aquí para habilitar la herencia en las clases hijas
+    open(name, link) {
         if (!this.popupElement) {
             return;
         }
-        this.popupElement.classList.add('popup_is-opened');
-        document.addEventListener('keydown', this.handleEscClose);
+        this.popupElement.classList.add("popup_is-opened");
+        document.addEventListener("keydown", this.handleEscClose);
     }
     close() {
         if (!this.popupElement) {
             return;
         }
-        this.popupElement.classList.remove('popup_is-opened');
-        document.removeEventListener('keydown', this.handleEscClose);
+        this.popupElement.classList.remove("popup_is-opened");
+        document.removeEventListener("keydown", this.handleEscClose);
     }
     handleEscClose = (evt) => {
-        if (evt.key === 'Escape') {
+        if (evt.key === "Escape") {
             this.close();
         }
     };
     setEventListeners() {
         if (!this.popupElement)
             return;
-        const closeButton = this.popupElement.querySelector('.popup__close');
+        const closeButton = this.popupElement.querySelector(".popup__close");
         if (closeButton) {
-            closeButton.addEventListener('click', () => this.close());
+            closeButton.addEventListener("click", () => this.close());
         }
-        this.popupElement.addEventListener('mousedown', (evt) => {
+        this.popupElement.addEventListener("mousedown", (evt) => {
             if (evt.target === evt.currentTarget) {
                 this.close();
             }

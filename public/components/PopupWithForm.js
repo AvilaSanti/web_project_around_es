@@ -1,18 +1,20 @@
-import { Popup } from './Popup.js';
+import { Popup } from "./Popup.js";
+import { defaultFormConfig } from "../utils/constants.js";
 export class PopupWithForm extends Popup {
-    _formElement = null;
-    _handleFormSubmit;
+    formElement = null;
+    handleFormSubmit;
     constructor(popupSelector, handleFormSubmit) {
         super(popupSelector);
-        this._handleFormSubmit = handleFormSubmit;
+        this.handleFormSubmit = handleFormSubmit;
         if (this.popupElement) {
-            this._formElement = this.popupElement.querySelector('.popup__form');
+            this.formElement = this.popupElement.querySelector(".popup__form");
         }
     }
-    _getInputValues() {
+    getInputValues() {
         const formValues = {};
-        if (this._formElement) {
-            const currentInputs = this._formElement.querySelectorAll('.popup__input');
+        if (this.formElement) {
+            // 💡 Reutilizamos defaultFormConfig.inputSelector en lugar de dejarlo fijo
+            const currentInputs = this.formElement.querySelectorAll(defaultFormConfig.inputSelector);
             currentInputs.forEach((input) => {
                 formValues[input.name] = input.value;
             });
@@ -20,10 +22,10 @@ export class PopupWithForm extends Popup {
         return formValues;
     }
     setInputValues(data) {
-        if (!this._formElement)
+        if (!this.formElement)
             return;
         Object.keys(data).forEach((key) => {
-            const input = this._formElement.querySelector(`[name="${key}"]`);
+            const input = this.formElement.querySelector(`[name="${key}"]`);
             if (input) {
                 input.value = data[key];
             }
@@ -31,17 +33,17 @@ export class PopupWithForm extends Popup {
     }
     setEventListeners() {
         super.setEventListeners();
-        if (this._formElement) {
-            this._formElement.addEventListener('submit', (evt) => {
+        if (this.formElement) {
+            this.formElement.addEventListener("submit", (evt) => {
                 evt.preventDefault();
-                this._handleFormSubmit(this._getInputValues());
+                this.handleFormSubmit(this.getInputValues());
             });
         }
     }
     close() {
         super.close();
-        if (this._formElement) {
-            this._formElement.reset();
+        if (this.formElement) {
+            this.formElement.reset();
         }
     }
 }
