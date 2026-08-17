@@ -18,7 +18,10 @@ const createCard = (cardData) => {
 };
 const cardListSection = new Section({
     items: initialCards,
-    renderer: (cardData) => createCard(cardData)
+    renderer: (cardData) => {
+        const cardElement = createCard(cardData);
+        cardListSection.addItem(cardElement);
+    }
 }, ".cards__list");
 const popupEditProfile = new PopupWithForm("#edit-popup", (formValues) => {
     userInfo.setUserInfo({
@@ -57,7 +60,7 @@ buttonAddCard?.addEventListener("click", () => {
     newCardValidator.resetValidation();
     popupAddCard.open();
 });
-cardListSection.renderer();
+cardListSection.renderItems();
 editProfileValidator.enableValidation();
 newCardValidator.enableValidation();
 //# sourceMappingURL=index.js.map

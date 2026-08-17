@@ -23,7 +23,10 @@ const createCard = (cardData: { name: string; link: string }) => {
 const cardListSection = new Section(
   {
     items: initialCards,
-    renderer: (cardData) => createCard(cardData)
+    renderer: (cardData) => {
+      const cardElement = createCard(cardData);
+      cardListSection.addItem(cardElement);
+    }
   },
   ".cards__list"
 );
@@ -74,6 +77,6 @@ buttonAddCard?.addEventListener("click", () => {
   popupAddCard.open();
 });
 
-cardListSection.renderer();
+cardListSection.renderItems();
 editProfileValidator.enableValidation();
 newCardValidator.enableValidation();

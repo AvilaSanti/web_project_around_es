@@ -33,9 +33,13 @@ export class Card {
         const cardImage = this.cardElement.querySelector(".card__image");
         cardImage?.addEventListener("click", () => this.handleCardClick());
         const likeButton = this.cardElement.querySelector(".card__like-button");
-        likeButton?.addEventListener("click", (evt) => this.handleLikeIcon(evt));
+        likeButton?.addEventListener("click", (evt) => {
+            this.handleLikeIcon(evt);
+        });
         const deleteButton = this.cardElement.querySelector(".card__delete-button");
-        deleteButton?.addEventListener("click", () => this.handleDeleteCard());
+        deleteButton?.addEventListener("click", () => {
+            this.handleDeleteCard();
+        });
     }
     generateCard() {
         return this.cardElement;

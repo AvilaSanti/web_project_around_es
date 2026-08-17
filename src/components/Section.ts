@@ -1,33 +1,28 @@
 interface SectionConfig<T> {
   items: T[];
-  renderer: (item: T) => HTMLElement;
+  renderer: (item: T) => void;
 }
 
 export class Section<T> {
-  private sectionConfig: SectionConfig<T>;
-  private container: HTMLElement | null;
+  private _items: T[];
+  private _renderer: (item: T) => void;
+  private _container: HTMLElement | null;
 
   constructor({ items, renderer }: SectionConfig<T>, sectionClass: string) {
-    this.sectionConfig = { items, renderer };
-    this.container = document.querySelector(sectionClass);
+    this._items = items;
+    this._renderer = renderer;
+    this._container = document.querySelector(sectionClass);
   }
 
-  public renderer(): void {
-    if (!this.container) {
-      return;
-    }
-    const elementsArray: HTMLElement[] = [];
-    this.sectionConfig.items.forEach((item) => {
-      const element = this.sectionConfig.renderer(item); 
-      elementsArray.push(element);
+  public renderItems(): void {
+    if (!this._container) return;
+    this._items.forEach((item) => {
+      this._renderer(item);
     });
-    this.container.append(...elementsArray); 
   }
 
   public addItem(element: HTMLElement): void {
-    if (!this.container) {
-      return;
-    }
-    this.container.append(element);
+    if (!this._container) return;
+    this._container.prepend(element);
   }
 }

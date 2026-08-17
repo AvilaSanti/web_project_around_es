@@ -3,12 +3,12 @@ interface ICard {
   link: string;
 }
 
-export class Card implements ICard {
-  public name: string;
-  public link: string;
-  public selector: string;
-  public handleCardClick: () => void;
-  public cardElement: HTMLElement;
+export class Card {
+  private name: string;
+  private link: string;
+  private selector: string;
+  private handleCardClick: () => void;
+  private cardElement: HTMLElement;
 
   constructor({ name, link }: ICard, selector: string, handleCardClick: () => void) {
     this.name = name;
@@ -47,10 +47,14 @@ export class Card implements ICard {
     cardImage?.addEventListener("click", () => this.handleCardClick());
 
     const likeButton = this.cardElement.querySelector(".card__like-button");
-    likeButton?.addEventListener("click", (evt: Event) => this.handleLikeIcon(evt));
+    likeButton?.addEventListener("click", (evt: Event) => {
+      this.handleLikeIcon(evt);
+    });
 
     const deleteButton = this.cardElement.querySelector(".card__delete-button");
-    deleteButton?.addEventListener("click", () => this.handleDeleteCard());
+    deleteButton?.addEventListener("click", () => {
+      this.handleDeleteCard();
+    });
   }
 
   public generateCard(): HTMLElement {

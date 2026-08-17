@@ -1,26 +1,23 @@
 export class Section {
-    sectionConfig;
-    container;
+    _items;
+    _renderer;
+    _container;
     constructor({ items, renderer }, sectionClass) {
-        this.sectionConfig = { items, renderer };
-        this.container = document.querySelector(sectionClass);
+        this._items = items;
+        this._renderer = renderer;
+        this._container = document.querySelector(sectionClass);
     }
-    renderer() {
-        if (!this.container) {
+    renderItems() {
+        if (!this._container)
             return;
-        }
-        const elementsArray = [];
-        this.sectionConfig.items.forEach((item) => {
-            const element = this.sectionConfig.renderer(item);
-            elementsArray.push(element);
+        this._items.forEach((item) => {
+            this._renderer(item);
         });
-        this.container.append(...elementsArray);
     }
     addItem(element) {
-        if (!this.container) {
+        if (!this._container)
             return;
-        }
-        this.container.append(element);
+        this._container.prepend(element);
     }
 }
 //# sourceMappingURL=Section.js.map
